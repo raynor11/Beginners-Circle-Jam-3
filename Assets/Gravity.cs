@@ -9,7 +9,7 @@ public class Gravity : MonoBehaviour
 
 	private Rigidbody2D myRB;
 	private float G;
-	//private float thrust = 10.0f;
+	public Vector2 orbitalVelocity = new Vector2(0.0f, 0.0f);
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,22 @@ public class Gravity : MonoBehaviour
 
 		// Get gravity
 		G = GameObject.Find("God").GetComponent<Universal_Laws>().gravityConstant;
+
+		// Calculate orbital velocity
+		float m1, r;
+
+		foreach (GameObject planet in allObjects)
+		{
+			// Get mass of planet (m2)
+			m1 = planet.GetComponent<Rigidbody2D>().mass;
+
+			// Get distance (r)
+			r = Vector2.Distance(transform.position, planet.transform.position);
+			
+			orbitalVelocity *= Mathf.Sqrt(G*m1/r);
+		}
+
+		myRB.velocity = orbitalVelocity;
     }
 
     // Update is called once per frame
@@ -41,11 +57,11 @@ public class Gravity : MonoBehaviour
 	{
 		float m1, m2, r;
 
-		m1 = myRB.mass;
+		m2 = myRB.mass;
 		foreach (GameObject planet in allObjects)
 		{
 			// Get mass of planet (m2)
-			m2 = planet.GetComponent<Rigidbody2D>().mass;
+			m1 = planet.GetComponent<Rigidbody2D>().mass;
 
 			// Get distance (r)
 			r = Vector2.Distance(transform.position, planet.transform.position);
