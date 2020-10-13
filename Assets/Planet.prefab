@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 111720479308613221}
   - component: {fileID: 111720479308613220}
   - component: {fileID: 111720479308613243}
-  - component: {fileID: 4482961410583102486}
+  - component: {fileID: 8521870707566652969}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Gravity
@@ -122,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &4482961410583102486
+--- !u!114 &8521870707566652969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,9 +131,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 111720479308613242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e77997d58717eb5479f0baef4d1571e4, type: 3}
+  m_Script: {fileID: 11500000, guid: d44fca6f31f3e4217b927f465ef63386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 0
-  allObjects: []
-  orbitalVelocity: 0
+  rate: 20
+  direction: 0
+  target: {fileID: 0}
