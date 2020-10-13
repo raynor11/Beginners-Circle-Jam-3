@@ -9,7 +9,7 @@ public class Gravity : MonoBehaviour
 
 	private Rigidbody2D myRB;
 	private float G;
-	public Vector2 orbitalVelocity = new Vector2(0.0f, 0.0f);
+	public float orbitalVelocity = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +40,10 @@ public class Gravity : MonoBehaviour
 			// Get distance (r)
 			r = Vector2.Distance(transform.position, planet.transform.position);
 			
-			orbitalVelocity *= Mathf.Sqrt(G*m1/r);
-		}
+			orbitalVelocity = Mathf.Sqrt(G*m1/r);
 
-		myRB.velocity = orbitalVelocity;
+			myRB.AddForce(Vector2.Perpendicular(planet.transform.position - transform.position) * orbitalVelocity);
+		}
     }
 
     // Update is called once per frame
